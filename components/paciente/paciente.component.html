@@ -1,0 +1,117 @@
+<div class="container" style="background-color:lightpink; margin-top: 50px;">
+  <div class="row" *ngIf="vTab">
+    <div class="col-10" style="margin-top:10px;">
+      <h5 class="modal-title">Pacientes</h5>
+    </div>
+    <div class="col-2" style="margin-top:10px;"><button type="button" style="float: right;"
+        class="btn btn-outline-secondary btn-lg btn-block" (click)="vTab=false;">Nuevo</button></div>
+    
+    <div class="form-group">
+      <form #registroForm="ngForm" (ngSubmit)="find()">
+
+      </form>
+    </div>
+    <div class="col-12" style="margin-top:30px;">
+      <table class="striped highlight black-text table table-striped">
+        <thead class="thead-dark">
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha</th>
+          <th>Tipo Consulta</th>
+          <th>Doctor</th>
+          <th>&nbsp;</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ptient of _ptientService.ptients">
+            <td hidden>{{ptient._id}}</td>
+            <td>{{ ptient.nombre }}</td>
+            <td>{{ ptient.apellido }}</td>
+            <td>{{ ptient.fecha }}</td>
+            <td>{{ ptient.tipoConsulta }}</td>
+            <td>{{ ptient.doctor }}</td>
+            <td>
+              <a (click)="editPtients(ptient)" style="cursor:pointer; color:blue;" title="Actualizar Artista">
+                <i class="material-icons">edit</i>
+              </a>
+              <a (click)="btnDelete(ptient)" style="cursor:pointer; color:red;" title="Eliminar Artista">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="pagination">
+        <li *ngFor="let item of arrayOne(total); let i = index;">
+          <a href="" (click)="getPtient(2);"> {{i+1}} </a>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-md-6" style="margin: auto;">
+          <button style="float: center; width: 100px;" type="submit" class="btn btn-outline-danger" (click)="back()"
+            *ngIf="visPrevt">
+            Atrás
+          </button>
+          <button style="float: right; width: 100px; margin-bottom: 10px;" type="submit" class="btn btn-outline-info" (click)="next()"
+            *ngIf="visNext">
+            Siguiente
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  </head>
+  <body style="background-color:lightpink;  width: 70px; margin-left: 290px;" >
+  <div  *ngIf="!vTab">
+        <form #registroForm="ngForm" (ngSubmit)="btnRegistro()" class="formulario"  style="background-color:lightpink;" >
+          <h1>Datos del paciente</h1>
+          <div  class="contenedor">
+         
+            <div class="input-contenedor">
+              <div ><input type="hidden" name="id" [(ngModel)]="ptient._id"></div>
+              <i class="fas fa-user icon"></i>
+                <input style="background-color:lightpink;" #nombre="ngModel" name="nombre" [(ngModel)]="ptient.nombre" type="text" 
+                  placeholder="Nombre" required="" />              
+            </div>
+            <div class="input-contenedor"> 
+              <i class="fas fa-user icon"></i>         
+                <input style="background-color:lightpink;" #apellido="ngModel" name="apellido" [(ngModel)]="ptient.apellido" type="text"
+                   placeholder="Apellido" required="" />
+            
+            </div>
+            <div class="input-contenedor">  
+              <i class="fas fa-calendar-alt icon"></i>           
+                <input style="background-color:lightpink;" #fecha="ngModel" name="fecha" [(ngModel)]="ptient.fecha" type="text" 
+                  placeholder="Fecha" required="" />     
+            </div>
+
+            <div class="input-contenedor">
+              <i class="fas fa-clipboard-list icon"></i>
+                <input style="background-color:lightpink;"  #tipoConsulta="ngModel" name="tipoConsulta" [(ngModel)]="ptient.tipoConsulta" type="text"
+                   placeholder="Tipo de consulta" required="" />         
+            </div>
+           
+            <div class="input-contenedor">
+              <i class="far fa-address-card icon"></i>
+                <input style="background-color:lightpink;" #doctor="ngModel" name="doctor" [(ngModel)]="ptient.doctor" type="text" 
+                  placeholder="Doctor" required="" />
+              
+            </div>
+
+                   
+                <input type="submit" value="Guardar" class="button">
+              <div>&nbsp;</div>
+                <input type="submit" value="Cancelar" class="button1"  (click)="cancela()">          
+              </div>
+          </form>
+</div>
+</body>
+</html>

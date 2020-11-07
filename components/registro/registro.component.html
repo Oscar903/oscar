@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+  </head> 
+  <body  style="background-color:lightpink; width: 70px; margin-left: 300px;" >
+
+  
+      <form #registroForm="ngForm" (ngSubmit)="btnRegistro()" class="formulario"  style="background-color:lightpink;">
+        <h1>Registrate</h1>
+        <div class="contenedor">
+        
+          
+            <div class="input-contenedor">
+              <i class="fas fa-user icon"></i>
+              <input  style="background-color:lightpink;" id="login-name"  #nombre="ngModel" value="" name="nombre"
+                [(ngModel)]="user.nombre" type="text" placeholder="Nombre" required="" />
+            </div>
+  
+            <div class="input-contenedor">
+              <i class="fas fa-user icon"></i>
+              <input  style="background-color:lightpink;"  #apellido="ngModel" name="apellido" [(ngModel)]="user.apellido" type="text"
+                placeholder="Apellido" value="" id="login-apellido" required="" />
+            </div>
+  
+            <div  class="input-contenedor">
+              <i class="far fa-address-card icon"></i>
+              <input  style="background-color:lightpink;" #cargo="ngModel" id="login-cargo" name="cargo" [(ngModel)]="user.cargo"
+                type="text" placeholder="cargo" required="" />
+            </div>
+  
+  
+            <div class="input-contenedor">
+              <i class="fas fa-envelope icon"></i>
+              <input  style="background-color:lightpink;" #correo="ngModel" name="correo" id="login-correo"  [(ngModel)]="user.correo"
+                type="text" value="" placeholder="Correo electrónico" required="" />
+            </div>
+  
+            <div class="input-contenedor">
+              <i class="fas fa-key icon"></i>
+              <input style="background-color:lightpink;" #password="ngModel" name="password" [(ngModel)]="user.password" type="password" 
+                id="login-pass" value="" placeholder="Contraseña" required="" />
+            </div>
+  
+            <input type="submit" value="Registrate" class="button">
+            <li><a class="link" routerLink="../login">Ingresar</a></li>
+        
+        </div>
+      </form>
+   
+  </body>
+  </html>
+  
+ 
